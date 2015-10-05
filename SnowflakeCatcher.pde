@@ -3,6 +3,8 @@ void setup()
 {
   //your code here
   size(300,300);
+  background(0,0,0);
+  noStroke();
 
   for(int i = 0; i < flake.length; i++)
   {
@@ -14,11 +16,12 @@ void setup()
 void draw()
 {
  
-  background(0,0,0);
+  //background(0,0,0);
   for (int i = 0; i<flake.length; i++)
   {
 
     flake[i].lookDown();
+    flake[i].erase();
     flake[i].move();    
     flake[i].show(); 
     flake[i].wrap();
@@ -27,8 +30,12 @@ void draw()
 }
 void mouseDragged()
 {
-  //your code here
+  fill(255,0,0);
+  ellipse(mouseX,mouseY,10,10);
 }
+
+
+
 
 class Snowflake
 {
@@ -53,8 +60,8 @@ class Snowflake
     //your code here
     if ((y> -5) && (y<305))
     {
-      color c = get((int)x,(int)y+7);
-      if (c == color(255,255,255))
+      color c = get((int)x,(int)y+6);
+      if (c == color(255,0,0))
       {
         isMoving = false;      
       }
@@ -68,8 +75,8 @@ class Snowflake
   void erase()
   {
     //your code here
-    fill(255,0,0);
-    ellipse(x,y,12,12);
+    fill(0,0,0);
+    ellipse(x,y,11,11);
   }
   void move()
   {
@@ -80,8 +87,9 @@ class Snowflake
     }
     else if(isMoving == false)
     {
-      println("false");
-      x = x + (float)(Math.random()*2);
+     
+      x = x;
+      y = y;
     }
   }
   void wrap()
@@ -92,5 +100,3 @@ class Snowflake
     }
   }
 }
-
-
